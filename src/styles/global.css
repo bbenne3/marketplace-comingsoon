@@ -1,8 +1,44 @@
 @import "@fontsource-variable/inter";
 
+:root {
+  --white: rgba(255, 255, 255, 1);
+  --black: rgba(0, 0, 0, 1);
+  --primary-text: rgba(56, 2, 59, 1);
+  --secondary-text: rgba(162, 136, 227, 1);
+  --primary-action: rgba(204, 255, 203, 1);
+  --link: rgba(206, 253, 255, 1);
+  --alt-link: rgba(187, 213, 237, 1);
+
+}
+
 html,
 body,
 * {
   font-family: 'Inter Variable', sans-serif;
   font-size: 16px;
+  color: var(--primary-text);
+}
+
+body {
+  scroll-behavior: smooth;
+  /* background: linear-gradient(33deg, color-mix(in srgb, var(--alt-link) 40%, white) 0%, transparent 70%); */
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+input[type="submit"], button[type="submit"] {
+  background-color: var(--secondary-text);
+  border: none;
+  font-weight: bold;
+  color: #ffffff;
+  padding-inline: 1rem;
+}
+
+input[type="submit"] {
+  display: inline-block;
+  padding-block: 0.5rem;
 }
