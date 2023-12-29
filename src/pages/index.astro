@@ -10,17 +10,16 @@ import twitter from "../images/twitter.svg";
 import instagram from "../images/instagram.svg";
 
 import { getCollection } from "astro:content";
-const [meta] = await Astro.glob('../content/meta/*.md')
+const [meta] = await Astro.glob("../content/meta/*.md");
 const metaInfo = {
   title: meta.frontmatter.title,
-  description: meta.frontmatter.description
+  description: meta.frontmatter.description,
 };
 
 const allSteps = await getCollection("steps");
 const steps = allSteps.sort(
   (stepA, stepB) => stepA.data.step - stepB.data.step
 );
-
 ---
 
 <html lang="en">
@@ -29,30 +28,27 @@ const steps = allSteps.sort(
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <meta
-      name="description"
-      content={metaInfo.description}
-    />
+    <meta name="description" content={metaInfo.description} />
     <meta name="author" content="OuiParty" />
-    <meta
-      property="og:description"
-      content={metaInfo.description}
-    />
-    <meta
-      property="og:title"
-      content={metaInfo.title}
-    />
+    <meta property="og:description" content={metaInfo.description} />
+    <meta property="og:title" content={metaInfo.title} />
     <meta name="twitter:card" content="summary" />
-    <meta
-      property="twitter:description"
-      content={metaInfo.description}
-    />
-    <meta
-      property="twitter:title"
-      content={metaInfo.title}
-    />
+    <meta property="twitter:description" content={metaInfo.description} />
+    <meta property="twitter:title" content={metaInfo.title} />
     <title>{metaInfo.title}</title>
-  </head>
+
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="var(--primary-text)"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="var(--secondary-text)"
+    />
+  </head>S
+
   <body>
     <header>
       <img src="" alt="Marketplace logo" />
@@ -93,12 +89,13 @@ const steps = allSteps.sort(
       >
         <p>Get connected</p>
         <div>
-          <img src={facebook.src} width="24" height="24" />
-          <img src={instagram.src} width="24" height="24" />
-          <img src={twitter.src} width="24" height="24" />
+          <img src={facebook.src} alt="facebook" width="24" height="24" />
+          <img src={instagram.src} alt="instagram" width="24" height="24" />
+          <img src={twitter.src} alt="twitter" width="24" height="24" />
         </div>
       </div>
     </footer>
   </body>
   <ViewTransitions />
+
 </html>
