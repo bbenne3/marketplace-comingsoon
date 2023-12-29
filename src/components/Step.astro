@@ -1,7 +1,9 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
   step: string;
-  img: string;
+  img: any;
   description: string;
 }
 
@@ -10,10 +12,10 @@ const { step, img, description } = Astro.props;
 
 <div class="step" role="listitem">
   <p>{step}</p>
-  <img src={img} alt={step} style={{aspectRatio: 1}} />
+  <Image src={img} alt={step} />
+  <!-- <img src={img} alt={step} style={{ aspectRatio: 1 }} /> -->
   <p>{description}</p>
 </div>
-
 
 <style>
   .step {
@@ -31,12 +33,12 @@ const { step, img, description } = Astro.props;
   .step p:first-of-type {
     font-size: 1.25rem;
     font-weight: bold;
-    color: var(--secondary-text);
   }
 
   .step p:last-of-type {
     line-height: 1.5rem;
-    opacity: 60%;
+    /* opacity: 60%; */
+    color: var(--secondary-text);
   }
 
   .step img {

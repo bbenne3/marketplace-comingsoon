@@ -24,21 +24,176 @@ body {
   /* background: linear-gradient(33deg, color-mix(in srgb, var(--alt-link) 40%, white) 0%, transparent 70%); */
 }
 
-ul {
-  list-style-type: none;
+body {
   margin: 0;
+  margin-inline: 1rem;
   padding: 0;
+  transition: all 1s ease-in-out;
+}
+
+header {
+  display: grid;
+  align-items: center;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid #00000033;
+}
+
+main {
+  padding-block: 3rem;
+}
+
+footer {
+  display: grid;
+  align-items: center;
+  grid-template-areas: "logo social";
+  grid-template-columns: 1fr max-content;
+  padding-top: 2.5rem;
+  border-top: 1px solid #000000;
+}
+
+.coming-soon {
+  font-size: 1.25rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--secondary-text);
+}
+
+.description {
+  font-size: 1.25rem;
+}
+
+.subscribe-form {
+  margin: 0 auto;
+  background-color: var(--primary-text);
+  min-width: 20rem;
+  justify-self: flex-end;
+  align-self: self-end;
+  padding-inline: 10dvw;
+  padding-block: 4rem;
+  box-shadow: 10px 10px 0px var(--secondary-text);
+}
+
+.subscribe-form * {
+  color: white;
+}
+
+.subscribe-form label {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  display: inline-block;
+}
+
+input[type="email"] {
+  border: 1px solid #000000;
+  background-color: #f8f8f8;
+  font-size: 1.25rem;
+  padding: 0.75rem 1.25rem;
+  color: var(--primary-text);
+  outline: 0px transparent;
+  transition: all 0.375s ease-in-out;
+}
+
+input[type="email"]:focus {
+  outline-width: 2px;
+  outline-style: solid;
+  outline-color: #000000;
+  outline-offset: -3px;
 }
 
 input[type="submit"], button[type="submit"] {
   background-color: var(--secondary-text);
   border: none;
-  font-weight: bold;
+  font-weight: 500;
   color: #ffffff;
-  padding-inline: 1rem;
+  padding-inline: 1.5rem;
+  padding-block: 1rem;
+  transition: all 0.375s ease-in-out;
 }
 
 input[type="submit"] {
   display: inline-block;
   padding-block: 0.5rem;
+}
+
+input[type="submit"]:is(:hover, :focus) {
+  background-color: color-mix(in srgb, var(--secondary-text) 80%, white);
+  outline: 2px solid var(--secondary-text);
+  outline-offset: 2px;
+}
+
+
+.steps {
+  max-width: 40rem;
+  padding-inline: 1rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.steps .step {
+  width: 60dvw;
+}
+
+@media screen and (min-width: 37rem) {
+  body {
+    margin: 0 auto;
+    max-width: min(35rem, 90%);
+  }
+}
+
+@media screen and (min-width: 60rem) {
+  body {
+    max-width: min(55rem, 70%);
+  }
+
+  .steps .step {
+    width: unset;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-start;
+    max-width: unset;
+  }
+}
+
+@media screen and (min-width: 80rem) {
+  body {
+    margin: 0 auto;
+    max-width: min(70rem, 70%);
+  }
+
+  .intro-cta {
+    display: grid;
+    gap: 3rem;
+    grid-template-columns: 1fr auto;
+  }
+
+  .subscribe-form {
+    padding: 0;
+    min-width: 40ch;
+    background-color: transparent;
+    box-shadow: 0 0 0 transparent;
+  }
+
+  .subscribe-form * {
+    color: var(--primary-text);
+  }
+
+  .subscribe-form label {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 }
