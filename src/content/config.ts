@@ -8,7 +8,7 @@ const metaCollection = defineCollection({
   }),
 });
 
-const userTypesCollection = defineCollection({
+const personasCollection = defineCollection({
   type: "content",
   schema: ({ image }) =>
     z.object({
@@ -18,6 +18,7 @@ const userTypesCollection = defineCollection({
       title: z.string(),
       description: z.string(),
       image: image(),
+      examples: z.string().array().min(3).max(5),
     }),
 });
 
@@ -35,5 +36,5 @@ const stepsCollection = defineCollection({
 export const collections = {
   steps: stepsCollection,
   meta: metaCollection,
-  userTypes: userTypesCollection,
+  personas: personasCollection,
 };

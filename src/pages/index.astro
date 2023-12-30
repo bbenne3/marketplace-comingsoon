@@ -7,8 +7,8 @@ import Persona from "../components/Persona.astro";
 import HowItWorks from "../components/HowItWorks.astro";
 import AboutTheTeam from "../components/AboutTheTeam.astro";
 
-const types = await getCollection("userTypes");
-const userTypes = types.sort((a) => (a.data.type === "host" ? -1 : 1));
+const types = await getCollection("personas");
+const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
 ---
 
 <MainLayout>
@@ -27,11 +27,12 @@ const userTypes = types.sort((a) => (a.data.type === "host" ? -1 : 1));
   </section>
   <section class="types">
     {
-      userTypes.map((ut) => (
+      personas.map((p) => (
         <Persona
-          title={ut.data.title}
-          description={ut.data.description}
-          img={ut.data.image}
+          title={p.data.title}
+          description={p.data.description}
+          img={p.data.image}
+          examples={p.data.examples}
         />
       ))
     }
@@ -53,7 +54,8 @@ const userTypes = types.sort((a) => (a.data.type === "host" ? -1 : 1));
     }
 
     .intro {
-      display: grid;
+      display: flex;
+      flex-direction: column;
       grid-column: main;
       row-gap: 1.5rem;
     }
@@ -96,7 +98,7 @@ const userTypes = types.sort((a) => (a.data.type === "host" ? -1 : 1));
     }
 
     .title {
-      font-size: 3rem;
+      font-size: clamp(2rem, 3rem, 5dvw);
       font-weight: 600;
     }
 
@@ -105,8 +107,11 @@ const userTypes = types.sort((a) => (a.data.type === "host" ? -1 : 1));
     }
 
     .coming-soon {
-      font-size: 1.25rem;
+      font-size: clamp(1.25rem, 1.75rem, 3dvw);
       color: var(--secondary-text);
+      text-transform: uppercase;
+      font-weight: 700;
+      opacity: 0.8;
     }
 
     .steps {
@@ -117,15 +122,23 @@ const userTypes = types.sort((a) => (a.data.type === "host" ? -1 : 1));
       display: grid;
       grid-template-columns: 1fr;
       grid-column: main;
-      gap: 3rem;
+      row-gap: 3rem;
+      column-gap: 4rem;
     }
     
+    @media screen and (min-width: 48rem) {
+      .types {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        /* column-gap: 6rem; */
+      }
+    }
+
     @media screen and (min-width: 60rem) {
       .types {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-column: main;
-        gap: 3rem;
+        column-gap: 6rem;
       }
     }
 

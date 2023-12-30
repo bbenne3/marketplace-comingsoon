@@ -5,21 +5,20 @@ interface Props {
   title: string;
   img: any;
   description: string;
+  examples: Array<string>;
 }
 
-const { title, img, description } = Astro.props;
+const { title, img, description, examples } = Astro.props;
 ---
 
 <div class="persona" role="listitem">
-  <h3 class="subheading">{title}</h3>
+  <p class="subheading">{title}</p>
   <p>{description}</p>
   <div class="img-container">
     <Image src={img} alt={title} />
     <div class="examples" role="list">
-      <p role="listitem">Birthday</p>
-      <p role="listitem">Graduation</p>
-      <p role="listitem">Wedding</p>
-      <p role="listitem">Social</p>
+      {examples.map((e) => <p role="listitem">{e}</p>)}
+      <p role="listitem">& more...</p>
     </div>
   </div>
 </div>
@@ -28,24 +27,29 @@ const { title, img, description } = Astro.props;
   .persona {
     display: grid;
     gap: 0.5rem;
+    grid-template-rows: auto auto minmax(16rem, 20dvw);
+    align-items: flex-start;
   }
 
   .persona > p:last-of-type {
     line-height: 1.5rem;
-    /* opacity: 60%; */
-    color: var(--secondary-text);
+    opacity: 80%;
+    /* color: var(--secondary-text); */
   }
 
   .img-container {
     display: grid;
     grid-template-columns: 2fr 1.5fr;
+    align-self: stretch;
+    overflow: hidden;
   }
 
   .img-container img {
     width: 100%;
+    height: 100%;
     object-fit: cover;
     object-position: top;
-    grid-column: 1/-1;
+    grid-column: 1/2;
     grid-row: 1;
   }
 
@@ -53,12 +57,27 @@ const { title, img, description } = Astro.props;
     grid-column: 2/-1;
     grid-row: 1;
     padding: 1rem;
-    background-color: color-mix(in srgb, var(--primary-text) 60%, transparent);
+    background-color: color-mix(in srgb, var(--primary-text) 100%, transparent);
     color: var(--white);
     font-size: 1.25rem;
     font-weight: 500;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+  }
+
+  @media screen and (min-width: 66rem) {
+    .persona {
+      grid-template-rows: auto auto minmax(24rem, 20dvw);
+    }
+
+    .img-container img {
+      grid-column: 1/-1;
+      grid-row: 1;
+    }
+
+    .examples {
+      background-color: color-mix(in srgb, var(--primary-text) 60%, transparent);
+    }
   }
 </style>

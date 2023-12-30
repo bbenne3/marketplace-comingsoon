@@ -9,7 +9,13 @@
   --link: rgb(255, 247, 89);
 
   --main-grid-template-areas: "lgutter main rgutter";
-  --main-grid-template-cols: 5dvh 1fr 5dvh;
+  --main-grid-template-cols: 3dvh 1fr 3dvh;
+}
+
+@media screen and (min-width: 30rem) {
+  :root {
+    --main-grid-template-cols: 5dvh 1fr 5dvh;
+  }
 }
 
 @media screen and (min-width: 60rem) {
@@ -119,6 +125,6 @@ input:not([type="button"]):not([type="radio"]):not([type="checkbox"]):not([type=
 }
 
 .subheading {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   font-weight: 500;
 }

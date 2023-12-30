@@ -24,7 +24,6 @@
           placeholder="contact@marketplace.com"
         />
         <div class="mc-field-group input-group">
-          <br />
           <p class="purpose-text">Are you interested in becoming a</p>
           <ul class="purpose-list">
             <li>
@@ -123,7 +122,7 @@
   }
   .email-label {
     margin-bottom: 0.5rem;
-    font-size: 1.25rem;
+    font-size: clamp(1.25rem, 1.45rem, 3dvw);
     display: inline-block;
   }
   input[type="email"] {
@@ -134,6 +133,11 @@
   }
   .purpose-list {
     margin-block: 1rem;
+  }
+  .purpose-list li {
+    line-height: 1.5rem;
+    display: flex;
+    gap: 0.25rem;
   }
   .response:empty {
     display: none;
@@ -149,5 +153,13 @@
   }
   input[type="submit"] {
     margin-top: 2rem;
+  }
+  
+  @media screen and (max-width: 20rem) {
+    input[type="submit"] {
+      width: 100%;
+      margin-top: 0.25rem;
+    }
+    
   }
 </style>
