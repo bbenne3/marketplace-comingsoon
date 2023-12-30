@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import { injectSpeedInsights } from '@vercel/speed-insights';
 
 import facebook from "../images/facebook.svg";
 import twitter from "../images/twitter.svg";
@@ -12,6 +13,8 @@ const metaInfo = {
   title: meta.frontmatter.title,
   description: meta.frontmatter.description,
 };
+
+injectSpeedInsights();
 ---
 
 <html lang="en">
