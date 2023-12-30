@@ -8,8 +8,21 @@ const metaCollection = defineCollection({
   }),
 });
 
+const userTypesCollection = defineCollection({
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      type: z.string().refine((val) => ["host", "provider"].includes(val), {
+        message: "type must be one of [host, provider]",
+      }),
+      title: z.string(),
+      description: z.string(),
+      image: image(),
+    }),
+});
+
 const stepsCollection = defineCollection({
-  type: "content", // v2.5.0 and later
+  type: "content",
   schema: ({ image }) =>
     z.object({
       step: z.number(),
@@ -19,8 +32,8 @@ const stepsCollection = defineCollection({
     }),
 });
 
-// 3. Export a single `collections` object to register your collection(s)
 export const collections = {
   steps: stepsCollection,
   meta: metaCollection,
+  userTypes: userTypesCollection,
 };

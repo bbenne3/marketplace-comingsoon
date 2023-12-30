@@ -2,7 +2,7 @@
 
 ---
 
-<div id="mc_embed_shell">
+<div id="mc_embed_shell" style={{ width: "100%" }}>
   <div id="mc_embed_signup">
     <form
       action="https://gmail.us21.list-manage.com/subscribe/post?u=20488a1991a9a3c85bbb1aa52&id=1b3f4aeac2&f_id=007af3e6f0"
@@ -12,8 +12,8 @@
       class="validate subscribe-form"
       target="_blank"
     >
-      <label for="mce-EMAIL">Sign up to know when we launch!</label>
-      <div>
+      <label class="email-label" for="mce-EMAIL">Sign up to know when we launch!</label>
+      <div class="form-group">
         <input
           type="email"
           name="EMAIL"
@@ -21,7 +21,6 @@
           id="mce-EMAIL"
           required=""
           value=""
-          style={{ width: "100%" }}
           placeholder="contact@marketplace.com"
         />
         <div class="mc-field-group input-group">
@@ -83,7 +82,7 @@
             id="mc-embedded-subscribe"
             class="button"
             value="Subscribe"
-            style={{fontSize: '1.5rem'}}
+            style={{ fontSize: "1.5rem" }}
           />
           <!-- <p style="margin: 0px auto;"><a href="http://eepurl.com/iG3IIs" title="Mailchimp - email marketing made easy and fun"><span style="display: inline-block; background-color: transparent; border-radius: 4px;"><img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;"></span></a></p> -->
         </div>
@@ -117,10 +116,18 @@
 </script>
 
 <style>
-  .label {
-    margin-bottom: 1rem;
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  .email-label {
+    margin-bottom: 0.5rem;
     font-size: 1.25rem;
     display: inline-block;
+  }
+  input[type="email"] {
+    max-width: 60ch;
   }
   .purpose-text {
     font-weight: 500;
@@ -139,5 +146,8 @@
   }
   #mce-success-response {
     color: #006800;
+  }
+  input[type="submit"] {
+    margin-top: 2rem;
   }
 </style>

@@ -1,0 +1,11 @@
+{
+  "short_name": "OuiParty",
+  "name": "OuiParty - Event Planning and Management - Coming Soon",
+  "id": "/?source=pwa",
+  "start_url": "/?source=pwa",
+  "background_color": "#38023b",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#38023b",
+  "description": "Exciting event party planning and coordination services coming soon! Manage your event and connect with and get the best from service/product providers."
+}

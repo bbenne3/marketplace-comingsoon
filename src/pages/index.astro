@@ -1,102 +1,137 @@
 ---
-import "../styles/global.css";
-
-import { ViewTransitions } from "astro:transitions";
-import Step from "../components/Step.astro";
-import Signup from "../components/Signup.astro";
-
-import facebook from "../images/facebook.svg";
-import twitter from "../images/twitter.svg";
-import instagram from "../images/instagram.svg";
-
 import { getCollection } from "astro:content";
-const [meta] = await Astro.glob("../content/meta/*.md");
-const metaInfo = {
-  title: meta.frontmatter.title,
-  description: meta.frontmatter.description,
-};
 
-const allSteps = await getCollection("steps");
-const steps = allSteps.sort(
-  (stepA, stepB) => stepA.data.step - stepB.data.step
-);
+import MainLayout from "../layouts/main.astro";
+import Signup from "../components/Signup.astro";
+import Persona from "../components/Persona.astro";
+import HowItWorks from "../components/HowItWorks.astro";
+import AboutTheTeam from "../components/AboutTheTeam.astro";
+
+const types = await getCollection("userTypes");
+const userTypes = types.sort((a) => (a.data.type === "host" ? -1 : 1));
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={metaInfo.description} />
-    <meta name="author" content="OuiParty" />
-    <meta property="og:description" content={metaInfo.description} />
-    <meta property="og:title" content={metaInfo.title} />
-    <meta name="twitter:card" content="summary" />
-    <meta property="twitter:description" content={metaInfo.description} />
-    <meta property="twitter:title" content={metaInfo.title} />
-    <title>{metaInfo.title}</title>
+<MainLayout>
+  <section class="intro-cta">
+    <div class="intro" transition:animate="slide">
+      <p class="coming-soon">Coming Soon!</p>
+      <h1 class="title">Event planning made simple!</h1>
+      <p class="description">
+        From intimate gatherings to large soirees, all managed seemlessly to
+        maximize your enjoyment.
+      </p>
+    </div>
+    <div class="cta">
+      <Signup />
+    </div>
+  </section>
+  <section class="types">
+    {
+      userTypes.map((ut) => (
+        <Persona
+          title={ut.data.title}
+          description={ut.data.description}
+          img={ut.data.image}
+        />
+      ))
+    }
+  </section>
+  <section>
+    <HowItWorks />
+  </section>
+  <section>
+    <AboutTheTeam />
+  </section>
 
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: light)"
-      content="var(--primary-text)"
-    />
-    <meta
-      name="theme-color"
-      media="(prefers-color-scheme: dark)"
-      content="var(--secondary-text)"
-    />
-    <link rel="manifest" href="/manifest.json">
-  </head>
+  <style>
+    .intro-cta {
+      display: grid;
+      row-gap: 3rem;
+      grid-column: lgutter / rgutter;
+      grid-template-areas: var(--main-grid-template-areas);
+      grid-template-columns: var(--main-grid-template-cols);
+    }
 
-  <body>
-    <header>
-      <img src="" alt="Marketplace logo" />
-    </header>
-    <main>
-      <div class="intro-cta">
-        <section transition:animate="slide">
-          <p class="coming-soon">Coming Soon!</p>
-          <h1 class="title">Party planning made simple!<br />Period.</h1>
-          <p class="description">
-            Party event management for the simple gathering the to large soirée.
-          </p>
-        </section>
-        <Signup />
-      </div>
-      <div style={{ marginBottom: "4rem" }}></div>
-      <div class="steps" role="list" transition:animate="fade">
-        {
-          steps.map((step) => (
-            <Step
-              step={step.data.step + ". " + step.data.title}
-              description={step.data.description}
-              img={step.data.image}
-            />
-          ))
-        }
-      </div>
-    </main>
-    <footer>
-      <img src="" alt="Marketplace logo" />
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "1fr max-content",
-          gap: "2rem",
-          alignItems: "center",
-        }}
-      >
-        <p>Get connected</p>
-        <div>
-          <img src={facebook.src} alt="facebook" width="24" height="24" />
-          <img src={instagram.src} alt="instagram" width="24" height="24" />
-          <img src={twitter.src} alt="twitter" width="24" height="24" />
-        </div>
-      </div>
-    </footer>
-  </body>
-  <ViewTransitions />
+    .intro {
+      display: grid;
+      grid-column: main;
+      row-gap: 1.5rem;
+    }
 
-</html>
+    .cta {
+      grid-column: lgutter / rgutter;
+    }
+
+    @media screen and (max-width: calc(70rem - 1px)) {
+      .cta {
+        background-color: var(--primary-text);
+        color: var(--white);
+        padding-block: 4rem;
+        display: grid;
+        grid-template-areas: var(--main-grid-template-areas);
+        grid-template-columns: var(--main-grid-template-cols);
+      }
+
+      :global(.cta > *) {
+        grid-column: main;
+      }
+    }
+
+    @media screen and (min-width: 70rem) {
+      .intro-cta {
+        grid-column: main;
+        grid-template-columns: 1.5fr 1fr;
+        row-gap: 2rem;
+        column-gap: 6rem;
+        align-self: flex-end;
+      }
+
+      .intro {
+        grid-column: unset;
+      }
+
+      .cta {
+        grid-column: unset;
+      }
+    }
+
+    .title {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+
+    .description {
+      font-size: 1.25rem;
+    }
+
+    .coming-soon {
+      font-size: 1.25rem;
+      color: var(--secondary-text);
+    }
+
+    .steps {
+      grid-column: main;
+    }
+
+    .types {
+      display: grid;
+      grid-template-columns: 1fr;
+      grid-column: main;
+      gap: 3rem;
+    }
+    
+    @media screen and (min-width: 60rem) {
+      .types {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column: main;
+        gap: 3rem;
+      }
+    }
+
+    section {
+      grid-column: main;
+    }
+
+  </style>
+</MainLayout>

@@ -1,0 +1,102 @@
+---
+import { ViewTransitions } from "astro:transitions";
+
+import facebook from "../images/facebook.svg";
+import twitter from "../images/twitter.svg";
+import instagram from "../images/instagram.svg";
+
+import "../styles/global.css";
+
+const [meta] = await Astro.glob("../content/meta/*.md");
+const metaInfo = {
+  title: meta.frontmatter.title,
+  description: meta.frontmatter.description,
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={metaInfo.description} />
+    <meta name="author" content="OuiParty" />
+    <meta property="og:description" content={metaInfo.description} />
+    <meta property="og:title" content={metaInfo.title} />
+    <meta name="twitter:card" content="summary" />
+    <meta property="twitter:description" content={metaInfo.description} />
+    <meta property="twitter:title" content={metaInfo.title} />
+    <title>{metaInfo.title}</title>
+
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: light)"
+      content="var(--primary-text)"
+    />
+    <meta
+      name="theme-color"
+      media="(prefers-color-scheme: dark)"
+      content="var(--secondary-text)"
+    />
+    <link rel="manifest" href="/manifest.json" />
+  </head>
+
+  <body>
+    <header>
+      <img class="header-logo" src="" alt="Marketplace logo" />
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer>
+      <img src="" alt="Marketplace logo" />
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr max-content",
+          gap: "0.5rem",
+          alignItems: "center",
+        }}
+      >
+        <p>Connect with us</p>
+        <div>
+          <img src={facebook.src} alt="facebook" width="24" height="24" />
+          <img src={instagram.src} alt="instagram" width="24" height="24" />
+          <img src={twitter.src} alt="twitter" width="24" height="24" />
+        </div>
+      </div>
+    </footer>
+  </body>
+  <ViewTransitions />
+</html>
+
+<style>
+  header {
+    grid-column: main;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    min-height: 2.5rem;
+  }
+
+  main {
+    display: grid;
+    row-gap: 6rem;
+    grid-template-areas: var(--main-grid-template-areas);
+    grid-template-columns: var(--main-grid-template-cols);
+    grid-column: lgutter / rgutter;
+    align-self: flex-start;
+    padding-bottom: 3rem;
+  }
+
+  footer {
+    grid-column: main;
+    display: grid;
+    grid-template-columns: 1fr auto
+  }
+
+  .header-logo {
+    min-height: 2.5rem;
+  }
+</style>

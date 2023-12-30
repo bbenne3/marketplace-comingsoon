@@ -1,0 +1,64 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  img: any;
+  description: string;
+}
+
+const { title, img, description } = Astro.props;
+---
+
+<div class="persona" role="listitem">
+  <h3 class="subheading">{title}</h3>
+  <p>{description}</p>
+  <div class="img-container">
+    <Image src={img} alt={title} />
+    <div class="examples" role="list">
+      <p role="listitem">Birthday</p>
+      <p role="listitem">Graduation</p>
+      <p role="listitem">Wedding</p>
+      <p role="listitem">Social</p>
+    </div>
+  </div>
+</div>
+
+<style>
+  .persona {
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .persona > p:last-of-type {
+    line-height: 1.5rem;
+    /* opacity: 60%; */
+    color: var(--secondary-text);
+  }
+
+  .img-container {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr;
+  }
+
+  .img-container img {
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+    grid-column: 1/-1;
+    grid-row: 1;
+  }
+
+  .examples {
+    grid-column: 2/-1;
+    grid-row: 1;
+    padding: 1rem;
+    background-color: color-mix(in srgb, var(--primary-text) 60%, transparent);
+    color: var(--white);
+    font-size: 1.25rem;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+</style>
