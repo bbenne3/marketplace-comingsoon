@@ -12,7 +12,7 @@ const { title, img, description, examples } = Astro.props;
 ---
 
 <div class="persona" role="listitem">
-  <p class="subheading">{title}</p>
+  <h2 class="subheading">{title}</h2>
   <p>{description}</p>
   <div class="img-container">
     <Image src={img} alt={title} />

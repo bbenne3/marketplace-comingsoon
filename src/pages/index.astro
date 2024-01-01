@@ -25,7 +25,7 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
       <Signup />
     </div>
   </section>
-  <section class="types">
+  <section class="types" role="list">
     {
       personas.map((p) => (
         <Persona
