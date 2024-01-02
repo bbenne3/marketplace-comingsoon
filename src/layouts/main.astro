@@ -1,18 +1,19 @@
 ---
+import "../styles/global.css";
+
 import { ViewTransitions } from "astro:transitions";
+import Step from "../components/Step.astro";
+import Signup from "../components/Signup.astro";
 
 import facebook from "../images/facebook.svg";
 import twitter from "../images/twitter.svg";
 import instagram from "../images/instagram.svg";
-
-import "../styles/global.css";
 
 const [meta] = await Astro.glob("../content/meta/*.md");
 const metaInfo = {
   title: meta.frontmatter.title,
   description: meta.frontmatter.description,
 };
-
 ---
 
 <html lang="en">
@@ -45,7 +46,7 @@ const metaInfo = {
 
   <body>
     <header>
-      <img class="header-logo" src="" alt="Marketplace logo" />
+      <img src="" alt="Marketplace logo" />
     </header>
     <main>
       <slot />
@@ -56,11 +57,11 @@ const metaInfo = {
         style={{
           display: "grid",
           gridTemplateColumns: "1fr max-content",
-          gap: "0.5rem",
+          gap: "2rem",
           alignItems: "center",
         }}
       >
-        <p>Connect with us</p>
+        <p>Get connected</p>
         <div>
           <img src={facebook.src} alt="facebook" width="24" height="24" />
           <img src={instagram.src} alt="instagram" width="24" height="24" />
@@ -68,11 +69,17 @@ const metaInfo = {
         </div>
       </div>
     </footer>
+    <div class="shadow-1" />
+    <div class="shadow-2" />
+    <div class="shadow-3" />
   </body>
   <ViewTransitions />
 </html>
-
 <style>
+  body {
+    position: relative;
+  }
+
   header {
     grid-column: main;
     display: grid;
@@ -99,5 +106,41 @@ const metaInfo = {
 
   .header-logo {
     min-height: 2.5rem;
+  }
+
+  .shadow-1 {
+    background-image: radial-gradient(#ECA6BF 0% 0%, transparent 59% 155%);
+    grid-row: 1/3;
+    grid-column: 1/-1;
+    position: absolute;
+    top: -70%;
+    left: 0;
+    bottom: 75%;
+    right: 0;
+    opacity: 0.5;
+    z-index: -1;
+  }
+  .shadow-2 {
+    background-image: radial-gradient(#E8ADFD 0% 0%, transparent 59% 155%);
+    grid-row: 2/-1;
+    grid-column: 1/-1;
+    position: absolute;
+    top: 8rem;
+    bottom: 0;
+    left: -50%;
+    right: 50%;
+    opacity: 0.5;
+    z-index: -1;
+  }
+  .shadow-3 {
+    background-image: radial-gradient(#A6E4EC 0% 0%, transparent 59% 155%);
+    grid-row: 2/-1;
+    grid-column: 1/-1;
+    position: absolute;
+    top: 40dvh;
+    bottom: 0;
+    left: 50%;
+    right: -50%;
+    opacity: 0.5;
   }
 </style>
