@@ -1,11 +1,11 @@
 ---
 type: provider
 title: Event Professionals
-description: Elevate your business and connect with customers
-image: "./step2.svg"
+description: Elevate your business and connect with customers.
+image: "./pro.png"
 examples:
   - Bakers
-  - DJ's
-  - Venues
   - Caterers
+  - Music/DJ's
+  - Venues
 ---

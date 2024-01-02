@@ -12,8 +12,27 @@
       class="validate subscribe-form"
       target="_blank"
     >
-      <label class="email-label" for="mce-EMAIL">Sign up to know when we launch!</label>
-      <div class="form-group">
+      <label class="email-label" for="mce-EMAIL"
+        >Subscribe to know when we launch!</label
+      >
+      <ul class="purpose-list">
+        <li>
+          <input
+            type="radio"
+            name="group[2134]"
+            id="mce-group[2134]-2134-0"
+            value="1"
+          /><label for="mce-group[2134]-2134-0">Event host</label>
+        </li><li>
+          <input
+            type="radio"
+            name="group[2134]"
+            id="mce-group[2134]-2134-1"
+            value="2"
+          /><label for="mce-group[2134]-2134-1">Event professional</label>
+        </li>
+      </ul>
+      <div class="form-group email-group">
         <input
           type="email"
           name="EMAIL"
@@ -23,28 +42,14 @@
           value=""
           placeholder="contact@marketplace.com"
         />
-        <div class="mc-field-group input-group">
-          <p class="purpose-text">Are you interested in becoming a</p>
-          <ul class="purpose-list">
-            <li>
-              <input
-                type="radio"
-                name="group[2134]"
-                id="mce-group[2134]-2134-0"
-                value="1"
-              /><label for="mce-group[2134]-2134-0">Customer</label>
-            </li><li>
-              <input
-                type="radio"
-                name="group[2134]"
-                id="mce-group[2134]-2134-1"
-                value="2"
-              /><label for="mce-group[2134]-2134-1"
-                >Service/Product Provider</label
-              >
-            </li>
-          </ul>
-        </div>
+        <input
+          type="submit"
+          name="subscribe"
+          id="mc-embedded-subscribe"
+          class="button"
+          value="Subscribe"
+          style={{ fontSize: "1rem", lineHeight: "1.65rem" }}
+        />
         <div style={{ visibility: "hidden", position: "absolute" }}>
           <label for="mce-SIGNUPLOC">Signup location</label>
           <input
@@ -72,19 +77,6 @@
           tabindex="-1"
           value=""
         />
-      </div>
-      <div class="optionalParent">
-        <div class="clear foot">
-          <input
-            type="submit"
-            name="subscribe"
-            id="mc-embedded-subscribe"
-            class="button"
-            value="Subscribe"
-            style={{ fontSize: "1.5rem" }}
-          />
-          <!-- <p style="margin: 0px auto;"><a href="http://eepurl.com/iG3IIs" title="Mailchimp - email marketing made easy and fun"><span style="display: inline-block; background-color: transparent; border-radius: 4px;"><img class="refferal_badge" src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg" alt="Intuit Mailchimp" style="width: 220px; height: 40px; display: flex; padding: 2px 0px; justify-content: center; align-items: center;"></span></a></p> -->
-        </div>
       </div>
     </form>
   </div>
@@ -118,26 +110,49 @@
   .form-group {
     display: flex;
     flex-direction: column;
-    row-gap: 1rem;
+    row-gap: 0.25rem;
   }
   .email-label {
-    margin-bottom: 0.5rem;
-    font-size: clamp(1.25rem, 1.45rem, 3dvw);
+    margin-bottom: 0.4rem;
+    font-size: clamp(0.85rem, 1rem, 1.2rem);
     display: inline-block;
+    font-weight: 300;
   }
   input[type="email"] {
     max-width: 60ch;
+    border-radius: 0.25rem;
+    flex: 1;
+  }
+  .purpose {
+    display: grid;
+    grid-template-columns: 3fr min-content;
+    align-items: center;
   }
   .purpose-text {
-    font-weight: 500;
+    font-weight: 300;
   }
   .purpose-list {
-    margin-block: 1rem;
+    margin-block: 0.25rem;
+    font-weight: 300;
+    display: flex;
+    gap: 1rem;
   }
   .purpose-list li {
     line-height: 1.5rem;
     display: flex;
     gap: 0.25rem;
+  }
+  .email-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  @media screen and (min-width: 38rem) {
+    .email-group {
+      flex-direction: row;
+      align-items: center;
+    }
   }
   .response:empty {
     display: none;
@@ -152,14 +167,14 @@
     color: #006800;
   }
   input[type="submit"] {
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
+    border-radius: 0.25rem;
   }
-  
+
   @media screen and (max-width: 20rem) {
     input[type="submit"] {
       width: 100%;
       margin-top: 0.25rem;
     }
-    
   }
 </style>

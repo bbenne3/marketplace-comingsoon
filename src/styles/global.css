@@ -3,7 +3,9 @@
 :root {
   --white: rgba(255, 255, 255, 1);
   --black: rgba(0, 0, 0, 1);
-  --primary-text: rgb(76, 7, 79);
+  --primary: rgb(141, 16, 218);
+  --secondary: rgba(217, 211, , 226, 1);
+  --primary-text: rgb(26, 2, 27);
   --secondary-text: rgba(162, 136, 227, 1);
   --primary-action: rgb(192, 162, 11);
   --link: rgb(255, 247, 89);

@@ -62,6 +62,7 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
 
     .cta {
       grid-column: lgutter / rgutter;
+      align-self: flex-end;
     }
 
     @media screen and (max-width: calc(70rem - 1px)) {
@@ -98,20 +99,26 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
     }
 
     .title {
-      font-size: clamp(2rem, 3rem, 5dvw);
+      font-size: clamp(2rem, 4rem, 4.5rem);
       font-weight: 600;
+      color: var(--primary);
     }
 
     .description {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
+      font-weight: 300;
     }
 
     .coming-soon {
-      font-size: clamp(1.25rem, 1.75rem, 3dvw);
-      color: var(--secondary-text);
-      text-transform: uppercase;
-      font-weight: 700;
-      opacity: 0.8;
+      font-size: clamp(1.25rem, 1.5rem, 2dvw);
+      padding: 0.5rem 1rem;
+      color: var(--primary);
+      border-color: var(--primary);
+      border-width: 2px;
+      border-style: solid;
+      font-weight: 400;
+      border-radius: 100rem;
+      width: fit-content;
     }
 
     .steps {
