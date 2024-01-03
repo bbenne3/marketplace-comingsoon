@@ -1,6 +1,4 @@
 ---
-import { Image } from "astro:assets";
-
 interface Props {
   title: string;
   img: any;
@@ -9,11 +7,9 @@ interface Props {
 }
 
 const { title, img, description, examples } = Astro.props;
-console.log(img);
 ---
 
 <div class="persona" role="listitem" style={`background-image: url(${img.src});`}>
-  <!-- <Image src={img} alt={title} class="bg-image" /> -->
   <h2 class="subheading">{title}</h2>
   <p class="description">{description}</p>
   <div class="examples" role="list">
