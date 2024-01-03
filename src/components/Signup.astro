@@ -40,14 +40,14 @@
           id="mce-EMAIL"
           required=""
           value=""
-          placeholder="contact@marketplace.com"
+          placeholder="Your email"
         />
         <input
           type="submit"
           name="subscribe"
           id="mc-embedded-subscribe"
           class="button"
-          value="Subscribe"
+          value="Notify Me"
           style={{ fontSize: "1rem", lineHeight: "1.65rem" }}
         />
         <div style={{ visibility: "hidden", position: "absolute" }}>
@@ -167,8 +167,10 @@
     color: #006800;
   }
   input[type="submit"] {
+    --_background-color: var(--cta);
     /* margin-top: 2rem; */
     border-radius: 0.25rem;
+    font-weight: 600;
   }
 
   @media screen and (max-width: 20rem) {

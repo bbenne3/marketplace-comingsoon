@@ -2,7 +2,6 @@
 import "../styles/global.css";
 
 import { ViewTransitions } from "astro:transitions";
-
 import facebook from "../images/facebook.svg";
 import twitter from "../images/twitter.svg";
 import instagram from "../images/instagram.svg";
@@ -67,15 +66,22 @@ const metaInfo = {
         </div>
       </div>
     </footer>
-    <div class="shadow-1" />
-    <div class="shadow-2" />
-    <div class="shadow-3" />
   </body>
   <ViewTransitions />
 </html>
 <style>
   body {
+    --_transparent_radial-size: 70% 155%;
     position: relative;
+    background:
+      radial-gradient(#ECA6BF 0% 0%, transparent var(--_transparent_radial-size)),
+      radial-gradient(#A6E4EC 0% 0%, transparent var(--_transparent_radial-size)),
+      radial-gradient(#E8ADFD 0% 0%, transparent var(--_transparent_radial-size));
+    background-repeat: no-repeat;
+    background-size: 50% 50%;
+    background-position-x: center, 150%, -65%;
+    background-position-y: -65%, 100%, center;
+    background-attachment: fixed;
   }
 
   header {

@@ -9,6 +9,7 @@
   --secondary-text: rgba(162, 136, 227, 1);
   --primary-action: rgb(192, 162, 11);
   --link: rgb(255, 247, 89);
+  --cta: rgb(255, 142, 67);
 
   --main-grid-template-areas: "lgutter main rgutter";
   --main-grid-template-cols: 3dvh 1fr 3dvh;
