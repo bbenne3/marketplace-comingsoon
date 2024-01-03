@@ -74,9 +74,9 @@ const metaInfo = {
     --_transparent_radial-size: 70% 155%;
     position: relative;
     background:
-      radial-gradient(#ECA6BF 0% 0%, transparent var(--_transparent_radial-size)),
-      radial-gradient(#A6E4EC 0% 0%, transparent var(--_transparent_radial-size)),
-      radial-gradient(#E8ADFD 0% 0%, transparent var(--_transparent_radial-size));
+      radial-gradient(#ECA6BF55 0% 0%, transparent var(--_transparent_radial-size)),
+      radial-gradient(#A6E4EC55 0% 0%, transparent var(--_transparent_radial-size)),
+      radial-gradient(#E8ADFD55 0% 0%, transparent var(--_transparent_radial-size));
     background-repeat: no-repeat;
     background-size: 50% 50%;
     background-position-x: center, 150%, -65%;
@@ -110,41 +110,5 @@ const metaInfo = {
 
   .header-logo {
     min-height: 2.5rem;
-  }
-
-  .shadow-1 {
-    background-image: radial-gradient(#ECA6BF 0% 0%, transparent 59% 155%);
-    grid-row: 1/3;
-    grid-column: 1/-1;
-    position: absolute;
-    top: -70%;
-    left: 0;
-    bottom: 75%;
-    right: 0;
-    opacity: 0.5;
-    z-index: -1;
-  }
-  .shadow-2 {
-    background-image: radial-gradient(#E8ADFD 0% 0%, transparent 59% 155%);
-    grid-row: 2/-1;
-    grid-column: 1/-1;
-    position: absolute;
-    top: 8rem;
-    bottom: 0;
-    left: -50%;
-    right: 50%;
-    opacity: 0.5;
-    z-index: -1;
-  }
-  .shadow-3 {
-    background-image: radial-gradient(#A6E4EC 0% 0%, transparent 59% 155%);
-    grid-row: 2/-1;
-    grid-column: 1/-1;
-    position: absolute;
-    top: 40dvh;
-    bottom: 0;
-    left: 50%;
-    right: -50%;
-    opacity: 0.5;
   }
 </style>
