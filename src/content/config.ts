@@ -27,9 +27,8 @@ const stepsCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
       step: z.number(),
-      title: z.string(),
-      description: z.string(),
-      image: image(),
+      icon: image(),
+      text: z.string(),
     }),
 });
 

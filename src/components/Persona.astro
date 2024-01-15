@@ -4,12 +4,13 @@ interface Props {
   img: any;
   description: string;
   examples: Array<string>;
+  type: ('host' | 'provider') | string & {}
 }
 
-const { title, img, description, examples } = Astro.props;
+const { type, title, img, description, examples } = Astro.props;
 ---
 
-<div class="persona" role="listitem" style={`background-image: url(${img.src});`}>
+<div class={`persona persona-${type}`} role="listitem" style={`background-image: url(${img.src});`}>
   <h2 class="subheading">{title}</h2>
   <p class="description">{description}</p>
   <div class="examples" role="list">
@@ -20,11 +21,14 @@ const { title, img, description, examples } = Astro.props;
 
 <style>
   .persona {
+    --chip-outline: white;
+    --chip-bg: white;
+    --chip-text: white;
     display: grid;
-    gap: 1rem;
+    gap: 2.5rem;
     grid-template-rows: auto auto 1fr;
-    grid-template-columns: 14rem 1fr;
-    padding: 1rem;
+    grid-template-columns: 20rem 1fr;
+    padding: 1.25rem;
     align-items: flex-start;
     border-radius: 2rem;
     overflow: hidden;
@@ -34,6 +38,18 @@ const { title, img, description, examples } = Astro.props;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+  }
+
+  .persona-host {
+    --chip-outline: var(--host-primary);
+    --chip-bg: var(--host-secondary);
+    --chip-text: #3E0263;
+  }
+
+  .persona-provider {
+    --chip-outline: var(--provider-primary);
+    --chip-bg: var(--provider-secondary);
+    --chip-text: #632B02;
   }
 
   .persona::before {
@@ -66,28 +82,30 @@ const { title, img, description, examples } = Astro.props;
   
   .examples {
     grid-row: 3 / -1;
-    grid-column: 1;
+    grid-column: 1 / 2;
     color: var(--primary);
     font-size: 1rem;
     font-weight: 500;
     display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    flex-wrap: wrap;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-self: center;
   }
 
   .examples > p {
-    border: 2px solid var(--primary);
-    border-radius: 100rem;
+    border: 2px solid var(--chip-outline);
+    border-radius: 0.5rem;
     padding: 0.25rem 1rem;
     width: fit-content;
-    background-color: var(--white);
-    color: var(--primary);
+    background-color: var(--chip-bg);
+    color: var(--chip-text);
   }
 
   @media screen and (min-width: 66rem) {
     .persona {
       grid-template-rows: auto auto 1fr;
-      padding: 2rem;
+      padding: 2.5rem;
     }
     .persona::before {
       --_background-offset: 50%;

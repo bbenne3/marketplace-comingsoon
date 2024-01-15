@@ -43,13 +43,20 @@ const metaInfo = {
 
   <body>
     <header>
-      <img src="" alt="Marketplace logo" />
+      <!-- <img src="" alt="EMU logo" /> -->
+      <dl>
+        <dt>EMU</dt>
+        <dd>Event Management for U</dd>
+      </dl>
     </header>
     <main>
       <slot />
     </main>
     <footer>
-      <img src="" alt="Marketplace logo" />
+      <dl>
+        <dt>EMU</dt>
+        <dd>Event Management for U</dd>
+      </dl>
       <div
         style={{
           display: "grid",
@@ -73,13 +80,24 @@ const metaInfo = {
   body {
     --_transparent_radial-size: 70% 155%;
     position: relative;
-    background:
-      radial-gradient(#ECA6BF55 0% 0%, transparent var(--_transparent_radial-size)),
-      radial-gradient(#A6E4EC55 0% 0%, transparent var(--_transparent_radial-size)),
-      radial-gradient(#E8ADFD55 0% 0%, transparent var(--_transparent_radial-size));
+    background: radial-gradient(
+        #eca6bf55 0% 0%,
+        transparent var(--_transparent_radial-size)
+      ),
+      radial-gradient(
+        #a6e4ec55 0% 0%,
+        transparent var(--_transparent_radial-size)
+      ),
+      radial-gradient(
+        #e8adfd55 0% 0%,
+        transparent var(--_transparent_radial-size)
+      );
     background-repeat: no-repeat;
     background-size: 50% 50%;
-    background-position-x: center, 150%, -65%;
+    background-position-x:
+      center,
+      150%,
+      -65%;
     background-position-y: -65%, 100%, center;
     background-attachment: fixed;
   }
@@ -87,9 +105,35 @@ const metaInfo = {
   header {
     grid-column: main;
     display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
+    /* grid-template-columns: 1fr auto; */
+    place-items: center;
+    place-content: center;
     min-height: 2.5rem;
+  }
+
+  header div:first-of-type {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  header dl {
+    text-align: center;
+    /* display: flex;
+    align-items: baseline; */
+  }
+
+  header dt {
+    font-size: 3rem;
+    font-family: var(--alt-font-family);
+  }
+
+  header dd {
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-family: var(--secondary-font-family);
   }
 
   main {
@@ -102,13 +146,36 @@ const metaInfo = {
     padding-bottom: 3rem;
   }
 
-  footer {
-    grid-column: main;
-    display: grid;
-    grid-template-columns: 1fr auto
-  }
-
   .header-logo {
     min-height: 2.5rem;
+  }
+
+  footer {
+    --_grid-template-columns: 1fr;
+    color: var(--primary-text);
+    grid-column: main;
+    display: grid;
+    grid-template-columns: var(--_grid-template-columns);
+    grid-row-gap: var(--grid_row_gap, 1.5rem);
+    padding-block: 3rem;
+  }
+
+  footer dt {
+    font-size: 3rem;
+    font-family: var(--alt-font-family);
+  }
+
+  footer dd {
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    font-family: var(--secondary-font-family);
+  }
+
+  @media screen and (min-width: 38rem) {
+    footer {
+      --_grid-template-columns: 1fr auto;
+      --_grid-row-gap: 1rem;
+    }
   }
 </style>

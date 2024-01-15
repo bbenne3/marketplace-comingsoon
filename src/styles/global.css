@@ -1,4 +1,6 @@
 @import "@fontsource-variable/inter";
+@import "@fontsource-variable/playfair";
+@import "@fontsource/play";
 
 :root {
   --white: rgba(255, 255, 255, 1);
@@ -11,25 +13,35 @@
   --link: rgb(255, 247, 89);
   --cta: rgb(255, 142, 67);
 
+  --provider-primary: rgb(255, 159, 14);
+  --provider-secondary: #FFF1D7;
+
+  --host-primary: rgb(156, 79, 255);
+  --host-secondary: rgb(238, 225, 255);
+
   --main-grid-template-areas: "lgutter main rgutter";
-  --main-grid-template-cols: 3dvh 1fr 3dvh;
+  --main-grid-template-cols: 5dvw 1fr 5dvw;
+
+  --primary-font-family: 'Inter Variable', sans-serif;
+  --secondary-font-family: 'Play', sans-serif;
+  --alt-font-family: 'Playfair Variable', sans-serif;
 }
 
 @media screen and (min-width: 30rem) {
   :root {
-    --main-grid-template-cols: 5dvh 1fr 5dvh;
+    --main-grid-template-cols: 8dvw 1fr 8dvw;
   }
 }
 
 @media screen and (min-width: 60rem) {
   :root {
-    --main-grid-template-cols: 14dvh 1fr 14dvh;
+    --main-grid-template-cols: 12dvw 1fr 12dvw;
   }
 }
 
 html,
 body {
-  font-family: 'Inter Variable', sans-serif;
+  font-family: var(--primary-font-family);
   font-size: 16px;
   color: var(--primary-text);
   box-sizing: border-box;

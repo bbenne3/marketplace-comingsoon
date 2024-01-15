@@ -17,8 +17,7 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
       <p class="coming-soon">Coming Soon!</p>
       <h1 class="title">Event planning made simple!</h1>
       <p class="description">
-        From intimate gatherings to large soirees, all managed seemlessly to
-        maximize your enjoyment.
+        From intimate gatherings to large soirees, all managed seemlessly with EMU.
       </p>
     </div>
     <div class="cta">
@@ -33,6 +32,7 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
           description={p.data.description}
           img={p.data.image}
           examples={p.data.examples}
+          type={p.data.type}
         />
       ))
     }
@@ -43,7 +43,6 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
   <section>
     <AboutTheTeam />
   </section>
-
   <style>
     .intro-cta {
       display: grid;
@@ -52,19 +51,27 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
       grid-template-areas: var(--main-grid-template-areas);
       grid-template-columns: var(--main-grid-template-cols);
     }
-
+  
     .intro {
       display: flex;
       flex-direction: column;
       grid-column: main;
       row-gap: 1.5rem;
     }
-
+  
     .cta {
       grid-column: lgutter / rgutter;
       align-self: flex-end;
     }
-
+  
+    .title {
+      font-family: var(--alt-font-family);
+    }
+  
+    .description {
+      font-family: var(--secondary-font-family);
+    }
+  
     @media screen and (max-width: calc(70rem - 1px)) {
       .cta {
         background-color: var(--primary-text);
@@ -74,44 +81,47 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
         grid-template-areas: var(--main-grid-template-areas);
         grid-template-columns: var(--main-grid-template-cols);
       }
-
+  
       :global(.cta > *) {
         grid-column: main;
       }
     }
-
+  
     @media screen and (min-width: 70rem) {
       .intro-cta {
         grid-column: main;
         grid-template-columns: 1.5fr 1fr;
         grid-template-areas: none;
         row-gap: 2rem;
-        column-gap: 6rem;
+        column-gap: 3rem;
         align-self: flex-end;
       }
-
+  
       .intro {
         grid-column: unset;
       }
-
+  
       .cta {
         grid-column: unset;
+        border: 1px solid rgb(207, 180, 212);
+        padding: 3rem 2.5rem;
+        border-radius: 2rem;
       }
     }
-
+  
     .title {
-      font-size: clamp(2rem, 4rem, 4.5rem);
+      font-size: clamp(2.5rem, 6dvw, 4rem);
       font-weight: 600;
       color: var(--primary);
     }
-
+  
     .description {
       font-size: 1.5rem;
       font-weight: 300;
     }
-
+  
     .coming-soon {
-      font-size: clamp(1.25rem, 1.5rem, 2dvw);
+      font-size: clamp(1.25rem, 2dvw, 1.5rem);
       padding: 0.5rem 1rem;
       color: var(--primary);
       border-color: var(--primary);
@@ -121,11 +131,11 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
       border-radius: 100rem;
       width: fit-content;
     }
-
+  
     .steps {
       grid-column: main;
     }
-
+  
     .types {
       display: grid;
       grid-template-columns: 1fr;
@@ -133,7 +143,7 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
       row-gap: 3rem;
       column-gap: 4rem;
     }
-    
+  
     @media screen and (min-width: 48rem) {
       .types {
         display: grid;
@@ -141,7 +151,7 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
         /* column-gap: 6rem; */
       }
     }
-
+  
     @media screen and (min-width: 60rem) {
       .types {
         display: grid;
@@ -149,10 +159,12 @@ const personas = types.sort((a) => (a.data.type === "host" ? -1 : 1));
         column-gap: 6rem;
       }
     }
-
+  
     section {
       grid-column: main;
+      display: grid;
+      gap: 2rem;
     }
-
   </style>
 </MainLayout>
+
