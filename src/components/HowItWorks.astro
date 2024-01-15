@@ -1,39 +1,135 @@
 ---
+import arrow from "../images/step-arrow.svg";
 import { getCollection } from "astro:content";
 const stepCollection = await getCollection("steps");
 const steps = stepCollection.map((s) => s.data).slice(0, 5);
 ---
 
-<h3 class="subheading">How it works</h3>
-<div role="list">
-  {
-    steps.map((step) => (
-      <div role="listitem">
-        <img src={step.icon.src} />
-        <p>{step.text}</p>
-      </div>
-    ))
-  }
-</div>
+<section>
+  <div class="container">
+    <h3 class="subheading">How it works</h3>
+    <div class="content">
+      {
+        steps.map((st, idx) => (
+          <>
+            <div data-type={idx % 2 === 0 ? "host" : "professional"}>
+              {st.text}
+            </div>
+
+            <img data-type="arrow" src={arrow.src} />
+          </>
+        ))
+      }
+    </div>
+  </div>
+</section>
 
 <style>
-  [role="list"] {
+  section {
+    --_offset: 2rem;
+    --_border-color: rgb(145, 65, 159);
+    --_background-color: linear-gradient(160deg, #f4e5fb 7.72%, #ffefe8 92.8%);
+    grid-column: lgutter / rgutter;
     display: grid;
+    gap: 2rem;
+  }
+
+  .container {
+    position: relative;
+    display: grid;
+    gap: 2rem;
+    place-items: center;
+    place-content: center;
+    justify-self: center;
+    padding: 1rem;
+    border: 1px solid var(--_border-color);
+    background-image: var(--_background-color);
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: [left] 1fr [left-center] 1fr [right-center] 1fr [right];
+    grid-template-rows: 1fr;
     gap: 1rem;
-    grid-template-columns: repeat(2, 1fr);
   }
 
-  [role="listitem"] {
-    display: grid;
-    gap: 0.5rem;
-    justify-items: center;
-    font-size: 1.25rem;
+  .content > div {
+    max-width: fit-content;
+    padding: 1rem;
+    border-radius: 0.5rem;
   }
 
-  @media screen and (min-width: 50rem) {
-    [role="list"] {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+  [data-type="host"] {
+    grid-column: left / right-center;
+    border: 1px solid var(--host-primary);
+    background-color: var(--host-secondary);
+  }
+
+  [data-type="professional"] {
+    grid-column: left-center / right;
+    justify-self: flex-end;
+    border: 1px solid var(--provider-primary);
+    background-color: var(--provider-secondary);
+  }
+
+  [data-type="arrow"] {
+    grid-column: left / right;
+    width: 75%;
+    height: 2rem;
+    justify-self: center;
+  }
+
+  [data-type="arrow"]:last-of-type {
+    display: none;
+  }
+
+  [data-type="professional"] + [data-type="arrow"] {
+    transform: rotateY(180deg);
+  }
+
+  @media screen and (min-width: 30rem) {
+    section {
+      grid-column: main;
     }
+    .container {
+      max-width: 40rem;
+      padding: 3rem;
+      border-radius: 2rem;
+    }
+
+    .container::before {
+      --_offset: 2rem;
+      content: " ";
+      position: absolute;
+      left: calc(-1 * var(--_offset));
+      right: calc(-1 * var(--_offset));
+      top: var(--_offset);
+      bottom: var(--_offset);
+      border: 1px solid #91419f;
+      border-image: linear-gradient(to bottom, #fffbff, #91419f) 1 100% 100%
+        no-repeat;
+      z-index: -1;
+      border-radius: 2rem;
+    }
+
+    .container::after {
+      content: " ";
+      position: absolute;
+      bottom: -2.5rem;
+      height: 4rem;
+      background-image: radial-gradient(#974ba455 23%, transparent 71%);
+      left: -2rem;
+      right: -2rem;
+      z-index: -1;
+      border-radius: 500rem;
+      overflow: hidden;
+    }
+  }
+
+  .subheading {
+    align-self: center;
+    font-family: var(--alt-font-family);
+    font-weight: 900;
+    font-size: clamp(1.75rem, 2.5dvw + 1rem, 2.5rem);
   }
 </style>
