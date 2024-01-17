@@ -3,12 +3,12 @@ import { getCollection } from "astro:content";
 import TeamMember from "./TeamMember.astro";
 
 const types = await getCollection("members");
-const members = types.sort((a, b) => a.data.order - b.data.order);
+const members = types.sort((a, b) => a.data.order > b.data.order ? 1 : -1);
 ---
 
 <h3 class="subheading">Meet the Team</h3>
 
-<div role="list">
+<div role="list" data-count={members.length % 2 === 0 ? 'even' : 'odd'}>
   {
     members.map((m) => (
       <TeamMember
@@ -32,6 +32,7 @@ const members = types.sort((a, b) => a.data.order - b.data.order);
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
+    max-width: 60rem;
   }
 
   @media screen and (min-width: 50rem) {
@@ -40,9 +41,9 @@ const members = types.sort((a, b) => a.data.order - b.data.order);
     }
   }
 
-  @media screen and (min-width: 65rem) {
+  @media screen and (min-width: 58rem) {
     [role="list"] {
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
     }
   }
 </style>
