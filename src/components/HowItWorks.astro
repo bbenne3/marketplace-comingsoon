@@ -23,13 +23,14 @@ const steps = stepCollection.map((s) => s.data).slice(0, 5);
               </div>
             )}
             <div data-type={idx % 2 === 0 ? "host" : "professional"}>
-              <img src={st.icon.src} />
+              <img src={st.icon.src} alt="" />
               <span>{st.text}</span>
             </div>
 
             {idx === 0 ? (
               <>
                 <img
+                  alt=""
                   data-type="arrow"
                   src={idx % 2 === 0 ? arrow.src : rarrow.src}
                 />
@@ -42,6 +43,7 @@ const steps = stepCollection.map((s) => s.data).slice(0, 5);
             ) : (
               <img
                 data-type="arrow"
+                alt=""
                 src={idx % 2 === 0 ? arrow.src : rarrow.src}
               />
             )}

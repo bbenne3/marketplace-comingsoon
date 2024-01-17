@@ -12,9 +12,7 @@
       class="validate subscribe-form"
       target="_blank"
     >
-      <label class="email-label" for="mce-EMAIL"
-        >Subscribe to know when we launch!</label
-      >
+      <p class="email-label">Subscribe to know when we launch!</p>
       <ul class="purpose-list">
         <li>
           <input
@@ -33,6 +31,7 @@
         </li>
       </ul>
       <div class="form-group email-group">
+        <label for="EMAIL">Email</label>
         <input
           type="email"
           name="EMAIL"
@@ -51,9 +50,9 @@
           style={{ fontSize: "1rem", lineHeight: "1.65rem" }}
         />
         <div style={{ visibility: "hidden", position: "absolute" }}>
-          <label for="mce-SIGNUPLOC">Signup location</label>
+          <label for="mce-SIGNUPLOC">Signup location
           <input
-            tab-index="-1"
+            aria-hidden="true"
             type="text"
             name="SIGNUPLOC"
             class="text"
@@ -74,7 +73,7 @@
         <input
           type="text"
           name="b_20488a1991a9a3c85bbb1aa52_1b3f4aeac2"
-          tabindex="-1"
+          aria-hidden="true"
           value=""
         />
       </div>
@@ -83,7 +82,8 @@
 </div>
 <script
   type="text/javascript"
-  src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js" defer></script>
+  src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+  defer></script>
 <script type="text/javascript" defer>
   (function () {
     window.fnames = new Array();
@@ -147,6 +147,12 @@
     display: flex;
     flex-direction: column;
     gap: 0.25rem;
+  }
+
+  .email-group label {
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
   }
 
   @media screen and (min-width: 38rem) {
