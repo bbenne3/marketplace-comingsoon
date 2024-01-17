@@ -32,8 +32,21 @@ const stepsCollection = defineCollection({
     }),
 });
 
+const membersCollection = defineCollection({
+  type: "content",
+  schema: ({ image }) =>
+    z.object({
+      pic: image(),
+      name: z.string(),
+      role: z.string(),
+      description: z.string().max(75),
+      order: z.number().min(0).max(10)
+    }),
+});
+
 export const collections = {
-  steps: stepsCollection,
   meta: metaCollection,
+  members: membersCollection,
   personas: personasCollection,
+  steps: stepsCollection,
 };

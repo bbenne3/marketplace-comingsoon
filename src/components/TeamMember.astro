@@ -1,0 +1,45 @@
+---
+interface Props {
+  pic: any;
+  name: string;
+  role: string;
+  description: string;
+}
+
+const { pic, name, role, description } = Astro.props;
+---
+
+<div role="listitem" class="team-member">
+  <img src={pic.src} alt="" />
+  <p>{name}</p>
+  <p>{role}</p>
+  <!-- <small>{description}</small> -->
+</div>
+
+<style>
+  .team-member {
+    display: grid;
+    gap: 0.5rem;
+    place-items: center;
+    text-align: center;
+  }
+
+  img {
+    border-radius: 100rem;
+    overflow: hidden;
+    height: clamp(3rem, 7dvw, 5rem);
+    aspect-ratio: 1;
+  }
+
+  p:first-of-type {
+    font-size: 1.25rem;
+  }
+
+  p:nth-of-type(2) {
+    font-weight: 500;
+  }
+
+  /* p:last-of-type {
+    font-size: calc(1rem - 2px);
+  } */
+</style>

@@ -1,5 +1,8 @@
 ---
 import arrow from "../images/step-arrow.svg";
+import rarrow from "../images/step-reverse-arrow.svg";
+import host from "../images/host.svg";
+import professional from "../images/professional.svg";
 import { getCollection } from "astro:content";
 const stepCollection = await getCollection("steps");
 const steps = stepCollection.map((s) => s.data).slice(0, 5);
@@ -12,11 +15,36 @@ const steps = stepCollection.map((s) => s.data).slice(0, 5);
       {
         steps.map((st, idx) => (
           <>
+            {idx === 0 && (
+              <div class="person" data-type="person-host">
+                <img src={host.src} alt="" />
+                <p>Alana Franci</p>
+                <small>Event host</small>
+              </div>
+            )}
             <div data-type={idx % 2 === 0 ? "host" : "professional"}>
-              {st.text}
+              <img src={st.icon.src} />
+              <span>{st.text}</span>
             </div>
 
-            <img data-type="arrow" src={arrow.src} />
+            {idx === 0 ? (
+              <>
+                <img
+                  data-type="arrow"
+                  src={idx % 2 === 0 ? arrow.src : rarrow.src}
+                />
+                <div class="person" data-type="person-professional">
+                  <img src={professional.src} alt="" />
+                  <p>Philip Arcand</p>
+                  <small>Event professional</small>
+                </div>
+              </>
+            ) : (
+              <img
+                data-type="arrow"
+                src={idx % 2 === 0 ? arrow.src : rarrow.src}
+              />
+            )}
           </>
         ))
       }
@@ -46,6 +74,35 @@ const steps = stepCollection.map((s) => s.data).slice(0, 5);
     background-image: var(--_background-color);
   }
 
+  .person {
+    display: grid;
+    grid-column: left / left-center;
+    grid-template-areas:
+      "avatar name"
+      "avatar type";
+    grid-template-columns: min-content 1fr;
+    column-gap: 0.5rem;
+    place-content: center;
+  }
+
+  .person > p {
+    grid-area: name;
+  }
+
+  .person > small {
+    grid-area: type;
+  }
+
+  .person > img {
+    grid-area: avatar;
+  }
+
+  .person[data-type="person-professional"] {
+    direction: rtl;
+    grid-column: right-center / right;
+    grid-row: 3;
+  }
+
   .content {
     display: grid;
     grid-template-columns: [left] 1fr [left-center] 1fr [right-center] 1fr [right];
@@ -53,9 +110,12 @@ const steps = stepCollection.map((s) => s.data).slice(0, 5);
     gap: 1rem;
   }
 
-  .content > div {
+  .content > div:not(.person) {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     max-width: fit-content;
-    padding: 1rem;
+    padding: 0.75rem;
     border-radius: 0.5rem;
   }
 
@@ -66,6 +126,7 @@ const steps = stepCollection.map((s) => s.data).slice(0, 5);
   }
 
   [data-type="professional"] {
+    flex-direction: row-reverse;
     grid-column: left-center / right;
     justify-self: flex-end;
     border: 1px solid var(--provider-primary);
@@ -79,12 +140,12 @@ const steps = stepCollection.map((s) => s.data).slice(0, 5);
     justify-self: center;
   }
 
-  [data-type="arrow"]:last-of-type {
-    display: none;
+  [data-type="arrow"]:first-of-type {
+    grid-row: 3;
   }
 
-  [data-type="professional"] + [data-type="arrow"] {
-    transform: rotateY(180deg);
+  [data-type="arrow"]:last-of-type {
+    display: none;
   }
 
   @media screen and (min-width: 30rem) {
@@ -105,9 +166,13 @@ const steps = stepCollection.map((s) => s.data).slice(0, 5);
       right: calc(-1 * var(--_offset));
       top: var(--_offset);
       bottom: var(--_offset);
-      border: 1px solid #91419f;
-      border-image: linear-gradient(to bottom, #fffbff, #91419f) 1 100% 100%
-        no-repeat;
+      border: 1px solid transparent;
+      background: linear-gradient(to bottom, #fffbff, #91419f) border-box;
+      mask-composite: exclude;
+      -webkit-mask: /*4*/
+        linear-gradient(#fff 0 0) padding-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
       z-index: -1;
       border-radius: 2rem;
     }

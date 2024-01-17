@@ -1,5 +1,48 @@
 ---
+import { getCollection } from "astro:content";
+import TeamMember from "./TeamMember.astro";
 
+const types = await getCollection("members");
+const members = types.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<h3 class="subheading">About the Team</h3>
+<h3 class="subheading">Meet the Team</h3>
+
+<div role="list">
+  {
+    members.map((m) => (
+      <TeamMember
+        name={m.data.name}
+        role={m.data.role}
+        pic={m.data.pic}
+        description={m.data.description}
+      />
+    ))
+  }
+</div>
+
+<style>
+  .subheading {
+    font-family: var(--alt-font-family);
+    font-size: 2rem;
+    font-weight: 700;
+  }
+
+  [role="list"] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  @media screen and (min-width: 50rem) {
+    [role="list"] {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 65rem) {
+    [role="list"] {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+</style>
