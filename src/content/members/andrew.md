@@ -1,6 +1,6 @@
 ---
 order: 3
-pic: ./bryan.jpeg
+pic: ./andrew.jpeg
 name: Andrew S.
 role: Founding Member & Advisor
 description: Entrepreneurial & Sales
