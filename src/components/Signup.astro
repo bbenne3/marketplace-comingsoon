@@ -1,5 +1,5 @@
 ---
-
+const isProd = import.meta.env.PROD;
 ---
 
 <div id="mc_embed_shell" style={{ width: "100%" }}>
@@ -57,7 +57,7 @@
             name="SIGNUPLOC"
             class="text"
             id="mce-SIGNUPLOC"
-            value="ComingSoon"
+            value={isProd ? "ComingSoon" : "DevComingSoon"}
           />
         </div>
       </div>
