@@ -45,7 +45,7 @@ const metaInfo = {
     <header>
       <!-- <img src="" alt="EMU logo" /> -->
       <dl>
-        <dt>EMU</dt>
+        <dt><a class="no-style-link" href="/" title="Event Management 4 you">EMU</a></dt>
         <dd>Event Management 4 U</dd>
       </dl>
     </header>
@@ -54,7 +54,7 @@ const metaInfo = {
     </main>
     <footer>
       <dl>
-        <dt>EMU</dt>
+        <dt><a class="no-style-link" href="/" title="Event Management 4 you">EMU</a></dt>
         <dd>Event Management 4 U</dd>
       </dl>
       <div
@@ -73,6 +73,7 @@ const metaInfo = {
         </div>
       </div>
       <p style={{textAlign: 'center', gridColumn: '1/-1'}}>&copy;2024 SlothMania, LLC. All rights reserved.</p>
+      <a href="privacy-policy" style={{textAlign: 'center', gridColumn: '1/-1'}}>Privacy Policy</a>
     </footer>
   </body>
   <ViewTransitions />
@@ -171,6 +172,11 @@ const metaInfo = {
     padding: 0;
     text-transform: uppercase;
     font-family: var(--secondary-font-family);
+  }
+
+  .no-style-link {
+    text-decoration: none;
+    color: inherit;
   }
 
   @media screen and (min-width: 38rem) {

@@ -44,7 +44,16 @@ const membersCollection = defineCollection({
     }),
 });
 
+const legalCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    updatedDate: z.string(),
+  }),
+})
+
 export const collections = {
+  legal: legalCollection,
   meta: metaCollection,
   members: membersCollection,
   personas: personasCollection,
