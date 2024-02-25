@@ -1,0 +1,25 @@
+---
+import MainLayout from "../layouts/main.astro";
+// import { getCollection } from "astro:content";
+
+// const docs = await getCollection("legal");
+// const pp = docs.find((x) => x.data.title === "Privacy Policy");
+const { frontmatter } = Astro.props;
+---
+
+<MainLayout>
+  <section class="pp-section">
+    <h1>{frontmatter.title}</h1>
+    <slot />
+    <br />
+    <p>This privacy policy was last updated on {frontmatter.updatedDate}</p>
+  </section>
+</MainLayout>
+
+<style type="text/css">
+  .pp-section {
+    grid-area: main;
+    display: grid;
+    gap: 1rem;
+  }
+</style>
